@@ -1,5 +1,3 @@
-// src/components/MatchingTrainees.js
-
 import React, { useState, useEffect } from "react";
 
 const MatchingTrainees = () => {
@@ -9,7 +7,8 @@ const MatchingTrainees = () => {
 		const getMatchingTrainees = async () => {
 			try {
 				// Make an API call to retrieve matching trainees based on availability and topics of interest
-				// Fetch the matching trainees data from the server
+				const response = await fetch("/api/matching-trainees"); // Adjust the API endpoint if needed
+				const data = await response.json();
 
 				// Update the state with the retrieved data
 				setMatchingTrainees(data.matchingTrainees);

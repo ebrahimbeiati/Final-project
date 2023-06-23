@@ -1,21 +1,23 @@
-// src/components/AvailabilityForm.js
-
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AvailabilityForm = () => {
-	const [availability, setAvailability] = useState("");
 	const [topic, setTopic] = useState("");
 	const [timeSlot, setTimeSlot] = useState("");
+	const [selectedDate, setSelectedDate] = useState(null);
+	const [selectedTime, setSelectedTime] = useState(null);
 
 	const handleAvailabilitySubmit = async () => {
 		try {
 			// Make an API call to submit trainee's availability, topic, and time slot
-			// Send the availability, topic, and time slot data to the server
+			// Send the topic, selectedDate, and selectedTime data to the server
 
 			// Clear the input fields after submitting
-			setAvailability("");
 			setTopic("");
 			setTimeSlot("");
+			setSelectedDate(null);
+			setSelectedTime(null);
 		} catch (error) {
 			console.error("Error submitting availability:", error);
 		}
@@ -24,10 +26,10 @@ const AvailabilityForm = () => {
 	return (
 		<div>
 			<h2>Enter Your Availability</h2>
-			<input
-				type="text"
-				value={availability}
-				onChange={(e) => setAvailability(e.target.value)}
+			<DatePicker
+				selected={selectedDate}
+				onChange={(date) => setSelectedDate(date)}
+				placeholderText="Select Date"
 			/>
 			<h2>Select Programming Topic</h2>
 			<select value={topic} onChange={(e) => setTopic(e.target.value)}>
@@ -45,6 +47,16 @@ const AvailabilityForm = () => {
 				<option value="Evening">Evening</option>
 				{/* Add more options for other time slots */}
 			</select>
+			<DatePicker
+				selected={selectedTime}
+				onChange={(time) => setSelectedTime(time)}
+				showTimeSelect
+				showTimeSelectOnly
+				timeIntervals={15}
+				timeCaption="Time"
+				dateFormat="h:mm aa"
+				placeholderText="Select Time"
+			/>
 			<button onClick={handleAvailabilitySubmit}>Submit</button>
 		</div>
 	);

@@ -13,6 +13,8 @@
 
 // api.js
 
+// api.js
+
 import { Router } from "express";
 import logger from "./utils/logger";
 
@@ -20,7 +22,7 @@ const router = Router();
 
 router.get("/", (_, res) => {
   logger.debug("Welcoming everyone...");
-  res.json({ message: "Hii" });
+  res.json({ message: "Hello, world!" });
 });
 
 // Define the route for retrieving matching trainees based on availability and topics of interest
@@ -55,5 +57,20 @@ function getMatchingTrainees(availability, topicsOfInterest) {
 
   return matchingTrainees;
 }
+
+// Sample trainees data
+const trainees = [
+  {
+    name: "John",
+    availability: ["Monday", "Tuesday"],
+    topicsOfInterest: ["JavaScript", "Python"],
+  },
+  {
+    name: "Alice",
+    availability: ["Tuesday", "Wednesday"],
+    topicsOfInterest: ["Java", "Ruby"],
+  },
+  // Add more trainee objects as needed
+];
 
 export default router;
